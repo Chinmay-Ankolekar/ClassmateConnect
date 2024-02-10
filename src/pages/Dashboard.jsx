@@ -3,7 +3,7 @@ import ProjectCard from "./ProjectCard";
 
 const Dashboard = ({ token }) => {
   let navigate = useNavigate();
-//   console.log(token.user.user_metadata);
+  //   console.log(token.user.user_metadata);
   return (
     <div>
       <h1>Welcome {token.user.user_metadata.fullName}</h1>
