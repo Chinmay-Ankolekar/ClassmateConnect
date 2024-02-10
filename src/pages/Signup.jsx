@@ -34,8 +34,24 @@ function signup() {
         })
         alert('User Created, check email for verification link.')
         navigate('/')
-        console.log(data)
         if (error) throw error
+    }catch (error) {
+      console.log('Error:', error)
+    }
+    createUser();
+  }
+
+  async function createUser(){
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .insert(
+          { 
+            fullname: formdata.fullname,
+            email: formdata.email,
+          }
+        ).single()
+      if (error) throw error
     }catch (error) {
       console.log('Error:', error)
     }
