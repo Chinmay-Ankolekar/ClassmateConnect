@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import ProjectCard from "./ProjectCard";
 
 const Dashboard = ({ token }) => {
   let navigate = useNavigate();
@@ -22,6 +23,8 @@ const Dashboard = ({ token }) => {
       >
         Create Project
       </button>
+        <ProjectCard />
+
     </div>
   );
 };
