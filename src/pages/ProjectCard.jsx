@@ -1,23 +1,74 @@
 import { useEffect, useState } from "react";
 import supabase from "../supabase/Supabase";
 
-const ProjectCard = () => {
+const ProjectCard = ({token}) => {
   const [projects, setProjects] = useState([]);
+  const [user_id, setUser_id] = useState(null);
 
-  const getProjects = async () => {
-    try {
-      const { data, error } = await supabase.from("project").select("*");
-      setProjects(data);
-      if (error) throw error;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+ console.log(token);
 
-  useEffect(() => {
-    getProjects();
-  }, []);
-
+//  const getUsers = async () => {
+//     try {
+//       const { data, error } = await supabase.from("users").select("id").eq("email", token.user.email);
+//       if (error) throw error;
+//       console.log(data[0].id);
+//      setUser_id(data[0].id);
+//      console.log('here');
+//      getProjects();
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+  
+//   const getProjects = async () => {
+//     try {
+//       const { data, error } = await supabase.from("project").select("*").eq("mem_id1", user_id)
+//       console.log(data);
+//       setProjects(data);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+  
+//   useEffect(() => {
+//     console.log('inside useeffect');
+//     getUsers();
+//   },[])
+  
+    const getUsers = async () => {
+      try {
+        const { data, error } = await supabase.from("users").select("id").eq("email", token.user.email);
+        if (error) throw error;
+        setUser_id(data[0].id);
+        return data[0].id; // Return user_id for chaining
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+    const getProjects = async (user_id) => { // Pass userId as parameter
+      try {
+        const { data, error } = await supabase.from("project").select("*").eq("mem_id1", user_id);
+        if (error) throw error;
+        return data; // Return projects data for chaining
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+    useEffect(() => {
+      getUsers().then(userId => {
+        if (userId) {
+          getProjects(userId).then(projectsData => {
+            setProjects(projectsData);
+          });
+        }
+      });
+    }, [token]); // Call useEffect only when token changes
+  
+    // Render component with projects state
+ 
+  
 
   return (
     <>

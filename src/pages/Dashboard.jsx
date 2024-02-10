@@ -3,7 +3,7 @@ import ProjectCard from "./ProjectCard";
 
 const Dashboard = ({ token }) => {
   let navigate = useNavigate();
-  console.log(token.user.user_metadata);
+//   console.log(token.user.user_metadata);
   return (
     <div>
       <h1>Welcome {token.user.user_metadata.fullName}</h1>
@@ -19,12 +19,11 @@ const Dashboard = ({ token }) => {
         onClick={() => {
           navigate("/createproduct");
         }}
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 ml-3"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 ml-3"
       >
         Create Project
       </button>
-        <ProjectCard />
-
+      <ProjectCard token={token} />
     </div>
   );
 };

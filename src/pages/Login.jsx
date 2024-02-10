@@ -37,7 +37,7 @@ const { data, error } = await supabase.auth.signInWithPassword({
     }
   }
 
-  console.log(formdata)
+//   console.log(formdata)
 
   return (
     <>
