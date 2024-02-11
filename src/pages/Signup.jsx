@@ -34,11 +34,12 @@ function signup() {
         })
         alert('User Created, check email for verification link.')
         navigate('/')
+        createUser()
         if (error) throw error
     }catch (error) {
       console.log('Error:', error)
     }
-    createUser();
+   
   }
 
   async function createUser(){

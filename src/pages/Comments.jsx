@@ -150,7 +150,14 @@ const Comments = ({ project, token }) => {
                   <div className="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row">
                     <h3 className="font-medium">{comment.user_name}</h3>
                     <time className="text-xs" dateTime={comment.date}>
-                        {day} {month} {year} {formattedTime}
+                    <time className="text-xs" dateTime={comment.date}>
+  {new Date(comment.date).toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    hour: 'numeric',
+    minute: 'numeric'
+  })}
+</time>
                     </time>
                   </div>
                   <p className="text-sm">{comment.comment_description}</p>

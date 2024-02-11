@@ -28,6 +28,22 @@ const CreateProject = ({ token }) => {
     createProject();
   };
 
+  const getUsername = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("users")
+        .select("id")
+        .eq("email", token.user.email);
+        console.log(data[0].id);
+      if (error) throw error;
+      setMem_id1(data[0].id);
+      return data[0].id;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  getUsername();
+
   console.log(p_name, p_desc, mem_id1, mem_id2, mem_id3, mem_id4, due_date);
 
   async function createProject() {
@@ -45,6 +61,7 @@ const CreateProject = ({ token }) => {
           due_date: due_date,
         })
         .single();
+        console.log(mem_id1);
       if (error) throw error;
       navigate("/dashboard");
     } catch (error) {

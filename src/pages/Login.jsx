@@ -28,9 +28,11 @@ function Login({ setToken }) {
         password: formdata.password,
       });
       console.log(data);
+      if (error) throw error;
+    
       setToken(data);
       navigate("/dashboard");
-      if (error) throw error;
+      
     } catch (error) {
       console.log("Error:", error);
     }

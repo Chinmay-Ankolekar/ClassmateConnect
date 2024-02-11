@@ -67,20 +67,23 @@ const ProductDetails = ({ token }) => {
   // Assuming project.created_at is a timestamp
   const date = new Date(project.created_at);
 
-  // Get the date, month, and year separately
-  const day = date.getDate();
-  const month = date.toLocaleString("default", { month: "short" });
-  const year = date.getFullYear();
+// Get the date, month, and year separately
+const day = date.getDate();
+const month = date.toLocaleString("default", { month: "short" });
+const year = date.getFullYear();
 
-  // Get the time
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
+// Get the time
+let hours = date.getHours();
+const minutes = date.getMinutes();
+const seconds = date.getSeconds();
 
+// Convert hours to 12-hour format and determine AM or PM
+const ampm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12 || 12; // Convert midnight (0) to 12
 
-  const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-    .toString()
-    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
+  .toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${ampm}`;
+
 
   return (
     <>
