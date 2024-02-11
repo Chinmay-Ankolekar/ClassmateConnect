@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import supabase from "../supabase/Supabase";
 import Comments from "./Comments";
 
-const ProductDetails = () => {
+const ProductDetails = ({token}) => {
   const { projectId } = useParams();
   const [project, setProject] = useState({});
 
@@ -55,7 +55,7 @@ const ProductDetails = () => {
           </span>
         </div>
       </div>
-      <Comments project={project}/>
+      <Comments project={project} token={token}/>
     </>
   );
 };

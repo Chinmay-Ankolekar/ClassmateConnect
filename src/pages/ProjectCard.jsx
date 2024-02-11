@@ -26,9 +26,8 @@ const ProjectCard = ({ token }) => {
       const { data, error } = await supabase
         .from("project")
         .select("*")
-        .or(`mem_id1.eq.${user_id},mem_id2.eq.${user_id}`);
+        .or(`mem_id1.eq.${user_id},mem_id2.eq.${user_id},mem_id3.eq.${user_id},mem_id4.eq.${user_id}`);
 
-      console.log("inside getprojects");
       console.log(data);
       if (error) throw error;
       return data;
@@ -73,6 +72,9 @@ const ProjectCard = ({ token }) => {
                   {project.mem_id3}
                 </span>
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                  {project.mem_id4}
+                </span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
                   {project.due_date}
                 </span>
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
@@ -81,10 +83,11 @@ const ProjectCard = ({ token }) => {
                 {/* <button onClick={() => navigate('/productdetails')}>
                   View
                 </button> */}
-                <button onClick={() => navigate(`/productdetails/${project.p_id}`)}>
-  View
-</button>
-
+                <button
+                  onClick={() => navigate(`/productdetails/${project.p_id}`)}
+                >
+                  View
+                </button>
               </div>
             </div>
           );
