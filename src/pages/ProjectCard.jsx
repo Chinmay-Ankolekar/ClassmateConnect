@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 const ProjectCard = ({ token }) => {
   let navigate = useNavigate();
   const [projects, setProjects] = useState([]);
+  const [users, setUsers] = useState([]);
   const [user_id, setUser_id] = useState(null);
 
   const getUsers = async () => {
@@ -21,14 +22,42 @@ const ProjectCard = ({ token }) => {
     }
   };
 
+  // const getAllUsersFormatted = async () => {
+  //   try {
+  //     const { data, error } = await supabase.from("users").select("*");
+  //     if (error) throw error;
+  //     const formattedUsers = data.map((user) => ({ [user.id]: user.fullname }));
+  //     let Allusers = formattedUsers;
+  //     console.log(Allusers);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  const getAllUsersFormatted = async () => {
+    try {
+      const { data, error } = await supabase.from("users").select("*");
+      if (error) throw error;
+      const formattedUsers = data.reduce((acc, user) => {
+        acc[user.id] = user.fullname;
+        return acc;
+      }, {});
+      console.log(formattedUsers);
+      setUsers(formattedUsers);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const getProjects = async (user_id) => {
     try {
       const { data, error } = await supabase
         .from("project")
         .select("*")
-        .or(`mem_id1.eq.${user_id},mem_id2.eq.${user_id},mem_id3.eq.${user_id},mem_id4.eq.${user_id}`);
-
-      console.log(data);
+        .or(
+          `mem_id1.eq.${user_id},mem_id2.eq.${user_id},mem_id3.eq.${user_id},mem_id4.eq.${user_id}`
+        );
+      getAllUsersFormatted();
       if (error) throw error;
       return data;
     } catch (err) {
@@ -45,6 +74,7 @@ const ProjectCard = ({ token }) => {
       }
     });
   }, [token]);
+  console.log(projects);
 
   return (
     <>
@@ -62,27 +92,33 @@ const ProjectCard = ({ token }) => {
                 <p className="text-gray-700 text-base">{project.p_desc}</p>
               </div>
               <div className="px-6 py-4">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                  {project.mem_id1}
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                  {project.mem_id2}
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-                  {project.mem_id3}
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-                  {project.mem_id4}
-                </span>
+                <div className="px-6 py-4">
+                  {Object.keys(project).map((key) => {
+                    if (key.startsWith("mem_id") && project[key]) {
+                      const userId = parseInt(project[key]);
+                      console.log("User ID:", userId);
+                      console.log("Users:", users);
+                      const userName = users[userId] || "Unknown User";
+                      console.log("User Name:", userName);
+                      return (
+                        <span
+                          key={key}
+                          className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                        >
+                          {userName}
+                        </span>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
+
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
                   {project.due_date}
                 </span>
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
                   {project.created_at}
                 </span>
-                {/* <button onClick={() => navigate('/productdetails')}>
-                  View
-                </button> */}
                 <button
                   onClick={() => navigate(`/productdetails/${project.p_id}`)}
                 >

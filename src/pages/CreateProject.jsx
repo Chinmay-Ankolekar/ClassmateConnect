@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import supabase from "../supabase/Supabase";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const CreateProject = ({ token }) => {
   let navigate = useNavigate();
@@ -56,6 +57,8 @@ const CreateProject = ({ token }) => {
   }
 
   return (
+    <>
+    <Navbar/>
     <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8">
       <div className="mb-4">
         <label
@@ -157,6 +160,7 @@ const CreateProject = ({ token }) => {
         </button>
       </div>
     </form>
+    </>
   );
 };
 

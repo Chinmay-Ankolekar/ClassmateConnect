@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
+import Navbar from "./Navbar";
 
 const Dashboard = ({ token }) => {
   let navigate = useNavigate();
   //   console.log(token.user.user_metadata);
   return (
+    <>
+    <Navbar />
     <div>
       <h1>Welcome {token.user.user_metadata.fullName}</h1>
       <button
@@ -25,6 +28,7 @@ const Dashboard = ({ token }) => {
       </button>
       <ProjectCard token={token} />
     </div>
+    </>
   );
 };
 
