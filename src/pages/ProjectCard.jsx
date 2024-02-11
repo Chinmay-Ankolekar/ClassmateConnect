@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import supabase from "../supabase/Supabase";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ token }) => {
+  let navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [user_id, setUser_id] = useState(null);
 
@@ -76,6 +78,13 @@ const ProjectCard = ({ token }) => {
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
                   {project.created_at}
                 </span>
+                {/* <button onClick={() => navigate('/productdetails')}>
+                  View
+                </button> */}
+                <button onClick={() => navigate(`/productdetails/${project.p_id}`)}>
+  View
+</button>
+
               </div>
             </div>
           );
