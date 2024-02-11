@@ -78,7 +78,7 @@ const ProjectCard = ({ token }) => {
 
   return (
     <>
-      {projects.length === 0 ? (
+      {/* {projects.length === 0 ? (
         <h1>No Projects</h1>
       ) : (
         projects.map((project, index) => {
@@ -128,6 +128,80 @@ const ProjectCard = ({ token }) => {
             </div>
           );
         })
+      )} */}
+
+      {/* <div className="flex flex-col md:flex-row md:flex-wrap gap-4 lg:m-4">
+  <div className="w-full md:w-1/3 ">
+    <div className="bg-white border shadow-sm rounded-xl">
+      <div className="p-4 md:p-5">
+        <h3 className="text-lg font-bold text-gray-800">
+          Card title
+        </h3>
+        <p className="mt-2 text-gray-500">
+          With supporting text below as a natural lead-in to additional content.
+        </p>
+        <button  onClick={() => navigate(`/productdetails/${project.p_id}`)} className="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none" href="#">
+          Card link
+          <svg className="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div className="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5">
+        <p className="mt-1 text-sm text-gray-500">
+        
+        </p>
+      </div>
+    </div>
+  </div>
+ 
+</div> */}
+      {projects.length === 0 ? (
+        <h1>No Projects</h1>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 lg:m-4">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="relative bg-white border shadow-sm rounded-xl"
+            >
+              <div className="p-4 md:p-5">
+                <h3 className="text-lg font-bold text-gray-800">
+                  {project.p_name}
+                </h3>
+                <div className="mt-2 text-gray-500 overflow-y-auto h-28">
+                  {project.p_desc}
+                </div>
+              </div>
+              <div className="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 absolute bottom-0 left-0 w-full">
+                <p className="text-sm text-gray-500">
+                  Due date: {project.due_date}
+                </p>
+              </div>
+              <div className="absolute bottom-0 right-0 p-4">
+                <button
+                  onClick={() => navigate(`/productdetails/${project.p_id}`)}
+                  className="inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none"
+                  href="#"
+                >
+                  Details
+                  <svg
+                    className="flex-shrink-0 w-4 h-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </>
   );

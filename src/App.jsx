@@ -39,7 +39,7 @@ function App() {
           token ? <Route path={'/createproduct'} element={<CreateProduct token={token}/>} /> : <Route path={'/404page'} element={<Page_404/>} />
         }
         {
-          token ? <Route path={'/productdetails/:projectId'} element={<ProductDetails token={token}/>} /> : <Route path={'/404page'} element={<Page_404/>} />
+          token ? <Route path={'/productdetails/:projectId'} element={<ProductDetails token={token}/>} /> : <Route element={<Page_404/>} />
         }
       </Routes>
     </>
