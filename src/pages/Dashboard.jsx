@@ -1,13 +1,33 @@
 import { useNavigate, Link } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
 import Navbar from "./Navbar";
+import supabase from "../supabase/Supabase";
+import { useEffect } from "react";
 
 const Dashboard = ({ token }) => {
   let navigate = useNavigate();
-  //   console.log(token.user.user_metadata);
+  
+  const setStatus = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("users")
+        .update({ status: true })
+        .eq("email", token.user.email)
+        .select()
+      if (error) throw error;
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect (() => {
+    setStatus();
+  }, [])
+
   return (
     <>
-      <Navbar />
+      <Navbar token={token} />
       <header className="mt-6 mb-12 lg:ml-10 m-4">
         <p className="mb-2 text-sm font-semibold text-blue-600">
           Starter Pages & Examples

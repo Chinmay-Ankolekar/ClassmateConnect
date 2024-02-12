@@ -1,8 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
+import supabase from "../supabase/Supabase";
 
-const Navbar = () => {
+const Navbar = ({token}) => {
   let navigate = useNavigate();
+  console.log(token);
+
+  const setStatus = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("users")
+        .update({ status: false })
+        .eq("email", token.user.email)
+        .select()
+      if (error) throw error;
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const Logout = () => {
+    setStatus();
     sessionStorage.removeItem("token");
     navigate("/");
   };

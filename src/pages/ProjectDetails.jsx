@@ -87,7 +87,7 @@ const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
 
   return (
     <>
-      <Navbar />
+      <Navbar token={token} />
       <div class="">
   <div class="mx-auto max-w-screen-lg px-3 py-10 space-y-3">
     <h5 class="text-sm font-medium uppercase text-gray-400 mb-0">

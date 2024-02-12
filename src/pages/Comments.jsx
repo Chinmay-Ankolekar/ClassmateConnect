@@ -5,13 +5,6 @@ const Comments = ({ project, token }) => {
   const [comments, setComments] = useState([]);
   const [user_id, setUser_id] = useState(null);
   const [commentsData, setCommentsData] = useState([]);
-  const [day, setDay] = useState(null);
-  const [month, setMonth] = useState(null);
-  const [year, setYear] = useState(null);
-    const [formattedTime, setFormattedTime] = useState(null);
-    const [hours, setHours] = useState(null);
-    const [minutes, setMinutes] = useState(null);
-    const [seconds, setSeconds] = useState(null);
   const name = token.user.user_metadata.fullName;
   
 
@@ -53,30 +46,9 @@ const Comments = ({ project, token }) => {
     try {
       const { data, error } = await supabase
         .from("comments")
-        .select(`id,comment_description, date,user_name, users(id, fullname)`)
+        .select(`id,comment_description, date,user_name, users(id, fullname,status)`)
         .eq("p_id", project.p_id);
-        const createdDate = new Date(commentsData.date);
-    console.log(createdDate);
-    console.log(commentsData.date);
-  
-  setDay(createdDate.getDate())
-  setMonth(createdDate.toLocaleString("default", { month: "short" }))
-    setYear(createdDate.getFullYear())
- 
-    setHours(createdDate.getHours())
-    setMinutes(createdDate.getMinutes())
-    setSeconds(createdDate.getSeconds())
-
-  // Get the time
-  const hours = createdDate.getHours();
-  const minutes = createdDate.getMinutes();
-  const seconds = createdDate.getSeconds();
-
-
-  const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-    .toString()
-    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-    setFormattedTime(formattedTime);
+        
       if (error) throw error;
       console.log(data);
       setCommentsData(data);
@@ -94,11 +66,11 @@ const Comments = ({ project, token }) => {
     getComments()
   }, [project]);
 
-  
+  console.log(commentsData);
+  commentsData.map((comment) => {
+    console.log(comment.users);
+  });
 
-
-
-  
   return (
     <>
       <div className="border rounded-lg overflow-hidden m-4 shadow-lg">
@@ -148,8 +120,29 @@ const Comments = ({ project, token }) => {
                 </span>
                 <div className="w-full ">
                   <div className="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row">
-                    <h3 className="font-medium">{comment.user_name}</h3>
-                    <time className="text-xs" dateTime={comment.date}>
+                  {/* <h3 className="font-medium">
+  {comment.user_name}
+  <span className={`inline-flex items-center ml-2 ${comment.users.status ? 'text-green-500 text-sm' : 'text-red-500 text-sm'}`}>
+    <span className={`w-3 h-3 rounded-full mr-1 ${comment.users.status ? 'bg-green-500 ' : 'bg-red-500'}`}></span>
+    <p>{comment.users.status ? 'Online' : 'Offline'}</p>
+  </span>
+</h3> */}
+<h3 className="font-medium">
+  {comment.user_name}
+  <span className={`inline-flex items-center ml-2 ${comment.users.status ? 'text-green-500' : 'text-red-500'}`}>
+    
+    <button 
+      type="button" 
+      className={`py-1 px-2 inline-flex items-center gap-x-1 text-xs font-semibold rounded-lg border border-transparent ${comment.users.status ? 'bg-teal-100 text-teal-800 hover:bg-teal-200' : 'bg-red-100 text-red-800 hover:bg-red-200'} disabled:opacity-50 disabled:pointer-events-none`} style={{pointerEvents: 'auto'}}>
+        <span className={`w-2 h-2 rounded-full mr-1 ${comment.users.status ? 'bg-green-500' : 'bg-red-500'}`}></span>
+      {comment.users.status ? 'Online' : 'Offline'}
+    </button>
+  </span>
+</h3>
+
+
+
+                    
                     <time className="text-xs" dateTime={comment.date}>
   {new Date(comment.date).toLocaleString('en-US', {
     day: 'numeric',
@@ -158,7 +151,7 @@ const Comments = ({ project, token }) => {
     minute: 'numeric'
   })}
 </time>
-                    </time>
+
                   </div>
                   <p className="text-sm">{comment.comment_description}</p>
                 </div>
