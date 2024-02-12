@@ -117,26 +117,10 @@ function Login({ setToken }) {
           </div>
           <img
             class="ml-20 w-11/12 max-w-lg rounded-lg object-cover"
-            src="src\images\login-image.png"
+            src="src\images\dashboard.png"
           />
         </div>
       </div>
-
-      {/* 
-      <form onSubmit={handlesubmit}>
-        <label>Enter the Email</label>
-        <input type="text" name="email" onChange={handlechange} />
-        <br />
-        <br />
-        <label>Enter the Password</label>
-        <input type="text" name="password" onChange={handlechange} />
-        <br />
-        <br />
-        <button>Login</button>
-      </form>
-      <p>
-        Dont have an account <Link to="/signup">Signup</Link>
-      </p> */}
     </>
   );
 }

@@ -151,7 +151,7 @@ function signup() {
           </div>
           <img
             class="ml-20 w-11/12 max-w-lg rounded-lg object-cover"
-            src="src\images\login-image.png"
+            src="src\images\dashboard.png"
           />
         </div>
       </div>
