@@ -20,7 +20,7 @@ Classmate Connect is a platform designed to facilitate project collaboration and
    Built with security in mind to protect user data and privacy.
 
 ### Installation
-1. Clone the repository: `git clone https://github.com/your-username/classmate-connect.git` 
+1. Clone the repository: `git clone https://github.com/Chinmay-Ankolekar/ClassmateConnect.git` 
 2. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
 
