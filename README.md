@@ -1,6 +1,6 @@
-## Classmate Connect
+## ClassmateConnect
 
-Classmate Connect is a platform designed to facilitate project collaboration and communication among college students. It allows users to create projects, discuss them with teammates, and enhance productivity.
+ClassmateConnect is a platform designed to facilitate project collaboration and communication among college students. It allows users to create projects, discuss them with teammates, and enhance productivity.
 
 ### Features
 
