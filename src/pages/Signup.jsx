@@ -130,7 +130,7 @@ function signup() {
                   to='/'
                   class="whitespace-nowrap font-semibold text-gray-900 underline underline-offset-4"
                 >
-                  Sign up.
+                  Login
                 </Link>
               </p>
             </div>
