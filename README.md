@@ -1,8 +1,29 @@
-# React + Vite
+## Classmate Connect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Classmate Connect is a platform designed to facilitate project collaboration and communication among college students. It allows users to create projects, discuss them with teammates, and enhance productivity.
 
-Currently, two official plugins are available:
+### Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ 1. **Project Creation**:
+   Easily create new projects and invite team members.
+
+ 2. **Discussion Forum**:
+   Collaborate with team members through project-specific discussion forums.
+
+ 3. **User Profiles**:
+   View profiles of team members to learn more about their skills and contributions.
+
+ 4. **Notifications**:
+   Stay updated with project activities through real-time notifications.
+
+ 5. **Security**:
+   Built with security in mind to protect user data and privacy.
+
+### Installation
+1. Clone the repository: `git clone https://github.com/your-username/classmate-connect.git` 
+2. Install dependencies: `npm install`
+4. Start the development server: `npm run dev`
+
+### Technologies Used
+- React.js
+- Supabase
