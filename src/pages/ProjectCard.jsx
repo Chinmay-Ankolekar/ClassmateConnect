@@ -86,7 +86,7 @@ const ProjectCard = ({ token }) => {
                 <h3 className="text-lg font-bold text-gray-800">
                   {project.p_name}
                 </h3>
-                <div className="mt-2 text-gray-500 overflow-y-auto h-28">
+                <div className="mt-2 text-gray-500 overflow-y-auto h-32">
                   {project.p_desc}
                 </div>
               </div>

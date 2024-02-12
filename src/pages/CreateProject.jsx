@@ -29,19 +29,33 @@ const CreateProject = ({ token }) => {
       alert("Please enter project name and description.");
       return;
     }
-    if (mem_id2 == null){
+    if (mem_id2 == '' && mem_id3 == '' && mem_id4 == '' ){
       alert("You must add atleast one member in your team");
       return;
+      
     }
     console.log(mem_id1, mem_id2, mem_id3, mem_id4);
     if (mem_id2 == mem_id1 || mem_id3 == mem_id1 || mem_id4 == mem_id1) {
       alert("You Cannot Enter your own ID as a member ID");
       return;
     }
-    if (!isNumber(mem_id1) || !isNumber(mem_id2) || !isNumber(mem_id3) || !isNumber(mem_id4)) {
-      alert("Please enter valid member IDs");
-      return;
+
+    if(mem_id2 == '' && mem_id3 != '' && mem_id4 != ''){
+        setMem_id2(null)
     }
+    if(mem_id3 == '' && mem_id4 != '' && mem_id2 != ''){
+        setMem_id3(null)
+    }
+    if(mem_id4 == '' && mem_id2 != '' && mem_id3 != ''){
+        setMem_id4(null)
+    }
+
+    if (mem_id2 == mem_id1 || mem_id2 == mem_id3 || mem_id2 == mem_id4 ||
+      mem_id3 == mem_id1 || mem_id3 == mem_id4 ||
+      mem_id4 == mem_id1) {
+      alert("Enter All Details Correctly");
+      return;
+  }
     createProject();
   };
 
@@ -138,7 +152,7 @@ const CreateProject = ({ token }) => {
                     Add first Member ID
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="mem_id2"
                     value={mem_id2}
                     onChange={(e) => setMem_id2(e.target.value)}
@@ -170,7 +184,7 @@ const CreateProject = ({ token }) => {
                     Add second Member ID
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="mem_id3"
                     value={mem_id3}
                     onChange={(e) => setMem_id3(e.target.value)}
@@ -202,7 +216,7 @@ const CreateProject = ({ token }) => {
                     Add Third Member ID
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="mem_id3"
                     value={mem_id4}
                     onChange={(e) => setMem_id4(e.target.value)}

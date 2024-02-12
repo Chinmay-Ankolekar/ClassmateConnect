@@ -30,10 +30,10 @@ const Navbar = ({ token }) => {
       <header className="text-slate-700 container relative mx-auto flex flex-col overflow-hidden px-4 py-4 lg:flex-row lg:items-center">
         <Link
           to="/dashboard"
-          className="flex items-center whitespace-nowrap text-xl font-black"
+          className="flex items-center whitespace-nowrap font-bold text-xl text-blue-600"
         >
-          <span className=" w-8"></span>
-          ClassmateConnect
+          <span className=""></span>
+          ClassmateConnect .
         </Link>
         <input type="checkbox" className="peer hidden" id="navbar-open" />
         <label
