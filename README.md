@@ -22,7 +22,21 @@ Classmate Connect is a platform designed to facilitate project collaboration and
 ### Images 
 1. Signup Page
    <br/>
-   ![signup-page]()
+   <br/>
+   ![signup-page](src/images/signup.png)
+2.Login Page
+  <br/>
+  <br/>
+   ![login](src/images/login.png)
+3. Dashboard
+   <br/>
+   <br/>
+   ![login](src/images/dashboard.png)
+4.Create Project
+ <br/>
+   <br/>
+   ![login](src/images/dashboard.png)
+
 
 ### Installation
 1. Clone the repository: `git clone https://github.com/Chinmay-Ankolekar/ClassmateConnect.git` 
