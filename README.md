@@ -24,25 +24,45 @@ Classmate Connect is a platform designed to facilitate project collaboration and
    <br/>
    <br/>
    ![signup-page](src/images/signup.png)
-2.Login Page
-  <br/>
-  <br/>
+2. Login Page
+   <br/>
+   <br/>
    ![login](src/images/login.png)
 3. Dashboard
    <br/>
    <br/>
-   ![login](src/images/dashboard.png)
-4.Create Project
- <br/>
+   ![dashboard](src/images/dashboard.png)
+4. Create Project
    <br/>
-   ![login](src/images/dashboard.png)
+   <br/>
+   ![login](src/images/createProject.png)
+5. Check user while adding member ID's
+   <br/>
+   <br/>
+   ![login](src/images/userDetails.png)
+6. Project Details
+   <br/>
+   <br/>
+   ![login](src/images/projectDetails.png)
+7. Project Discussion
+   <br/>
+   <br/>
+   ![login](src/images/projectDiscussion.png)
 
+### Technologies Used
+- React.js
+- Supabase
+- Tailwind CSS
+
+### Styling with Tailwind CSS
+   
+The application's UI is styled using Tailwind CSS.
+
+### Component Library
+
+This project utilizes Component Library Preline, ComponentLand for cards, pages, and other components. 
 
 ### Installation
 1. Clone the repository: `git clone https://github.com/Chinmay-Ankolekar/ClassmateConnect.git` 
 2. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
-
-### Technologies Used
-- React.js
-- Supabase
