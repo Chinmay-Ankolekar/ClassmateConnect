@@ -50,8 +50,9 @@ ClassmateConnect is a platform designed to facilitate project collaboration and 
    ![login](src/images/projectDiscussion.png)
 
 ### Technologies Used
-- React.js
-- Supabase
+- React JS
+- Supabase Authentication
+- Supabase Database 
 - Tailwind CSS
 
 ### Styling with Tailwind CSS
