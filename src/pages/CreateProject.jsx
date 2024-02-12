@@ -25,8 +25,12 @@ const CreateProject = ({ token }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!p_name.trim() || !p_desc.trim()) {
+    if (!p_name.trim() || !p_desc.trim())  {
       alert("Please enter project name and description.");
+      return;
+    }
+    if (mem_id2 == null){
+      alert("You must add atleast one member in your team");
       return;
     }
     console.log(mem_id1, mem_id2, mem_id3, mem_id4);
@@ -238,7 +242,7 @@ const CreateProject = ({ token }) => {
           </div>
         </section>
       </form>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <button
           onClick={openModal}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -310,7 +314,76 @@ const CreateProject = ({ token }) => {
             </div>
           </div>
         )}
+      </div> */}
+       <div className="flex justify-center">
+        <button
+          onClick={openModal}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Get User Details
+        </button>
       </div>
+
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
+          <div className="mx-auto max-w-screen-lg px-4 py-8 sm:px-8 bg-white rounded-lg shadow-lg overflow-auto" style={{ maxHeight: '80vh' }}>
+            <div className="flex items-center justify-between pb-6">
+              <div>
+                <h2 className="font-semibold text-gray-700">User Accounts</h2>
+                <span className="text-xs text-gray-500">
+                  View accounts of registered users
+                </span>
+              </div>
+              <button
+                onClick={closeModal}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-blue-600 text-left text-xs font-semibold uppercase tracking-widest text-white">
+                    <th className="px-5 py-3 w-1/4">ID</th>
+                    <th className="px-5 py-3 w-3/4">Full Name</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-500" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                  {users.map((user) => (
+                    <tr key={user.id}>
+                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm w-1/4">
+                        <p className="whitespace-no-wrap">{user.id}</p>
+                      </td>
+                      <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm w-3/4">
+                        <div className="flex items-center">
+                          <div className="ml-3">
+                            <p className="whitespace-no-wrap">
+                              {user.fullname}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

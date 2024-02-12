@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import supabase from "../supabase/Supabase";
 import Comments from "./Comments";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 const ProductDetails = ({ token }) => {
   const { projectId } = useParams();
@@ -145,15 +146,25 @@ const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
       })}
     </div>
     <button
-      type="button"
-      className={`py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent ${
-        project.completed ? "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-200 text-teal-900 hover:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none hover:text-teal-500 focus:outline-none focus:ring-1 focus:ring-gray-600" : "bg-blue-600 text-white"
-      } hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600`}
-      onClick={toggleCompletion}
-      disabled={project.completed}
-    >
-      {project.completed ? "Completed" : "Not Completed"}
-    </button>
+  type="button"
+  className={`py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent ${
+    project.completed
+      ? "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-200 text-teal-900 hover:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none hover:text-teal-500 focus:outline-none focus:ring-1 focus:ring-gray-600"
+      : "bg-yellow-100 text-yellow-800 hover:bg-yellow-200 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600"
+  } hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none`}
+  onClick={toggleCompletion}
+  disabled={project.completed}
+>
+  {project.completed ? "Completed" : "Not Completed"}
+</button>
+<Link to='/dashboard'
+  type="button"
+  className={`py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-100 text-gray-500 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600 ml-2`}
+>
+ Back to HomePage
+</Link>
+
+
 
     <Comments project={project} token={token} />
   </div>

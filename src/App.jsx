@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import CreateProduct from './pages/CreateProject'
 import Page_404 from './pages/Page_404'
 import ProductDetails from './pages/ProjectDetails'
+import Profile from './pages/Profile'
 
 function App() {
   const [token, setToken] = useState(false)
@@ -40,6 +41,9 @@ function App() {
         }
         {
           token ? <Route path={'/productdetails/:projectId'} element={<ProductDetails token={token}/>} /> : <Route element={<Page_404/>} />
+        }
+        {
+          token ? <Route path={'/profile'} element={<Profile token={token}/>} /> : <Route path={'/404page'} element={<Page_404/>} />
         }
       </Routes>
     </>

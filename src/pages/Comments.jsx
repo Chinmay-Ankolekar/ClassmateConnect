@@ -81,7 +81,7 @@ const Comments = ({ project, token }) => {
         </div>
         <div className="flex-grow px-8 pt-8 text-left text-gray-700">
           {commentsData.length === 0 ? (
-            <h1 className="m-3 mb-6">No Comments</h1>
+            <h1 className="m-3 mb-6">No Discussion</h1>
           ) : null}
           {commentsData
             .slice() // Create a copy of the array to avoid mutating the original array
@@ -120,13 +120,7 @@ const Comments = ({ project, token }) => {
                 </span>
                 <div className="w-full ">
                   <div className="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row">
-                  {/* <h3 className="font-medium">
-  {comment.user_name}
-  <span className={`inline-flex items-center ml-2 ${comment.users.status ? 'text-green-500 text-sm' : 'text-red-500 text-sm'}`}>
-    <span className={`w-3 h-3 rounded-full mr-1 ${comment.users.status ? 'bg-green-500 ' : 'bg-red-500'}`}></span>
-    <p>{comment.users.status ? 'Online' : 'Offline'}</p>
-  </span>
-</h3> */}
+                 
 <h3 className="font-medium">
   {comment.user_name}
   <span className={`inline-flex items-center ml-2 ${comment.users.status ? 'text-green-500' : 'text-red-500'}`}>
