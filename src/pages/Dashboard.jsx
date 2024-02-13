@@ -114,7 +114,7 @@ const Dashboard = ({ token }) => {
         .eq("email", token.user.email)
         .select();
       if (error) throw error;
-      console.log(data);
+
     } catch (err) {
       console.log(err);
     }

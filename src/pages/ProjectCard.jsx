@@ -30,7 +30,7 @@ const ProjectCard = ({ token }) => {
         acc[user.id] = user.fullname;
         return acc;
       }, {});
-      console.log(formattedUsers);
+  
       setUsers(formattedUsers);
     } catch (err) {
       console.log(err);
@@ -62,7 +62,7 @@ const ProjectCard = ({ token }) => {
       }
     });
   }, [token]);
-  console.log(projects);
+
 
   return (
     <>

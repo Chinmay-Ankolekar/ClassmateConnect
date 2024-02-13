@@ -59,7 +59,7 @@ function signup() {
     }
   }
 
-  console.log(formdata)
+
 
   return (
     <>

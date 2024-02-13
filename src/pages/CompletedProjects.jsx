@@ -3,10 +3,10 @@ import supabase from "../supabase/Supabase";
 import { useNavigate } from "react-router-dom";
 
 const CompletedProjects = ({ token }) => {
-    let navigate= useNavigate()
+  let navigate = useNavigate();
   const [user_id, setUser_id] = useState(null);
   const [projects, setProjects] = useState([]);
-  const [Allprojects, setAllProjects] =useState([])
+  const [Allprojects, setAllProjects] = useState([]);
 
   const getUsers = async () => {
     try {
@@ -15,7 +15,7 @@ const CompletedProjects = ({ token }) => {
         .select("id")
         .eq("email", token.user.email);
       if (error) throw error;
-      console.log(data[0].id);
+
       setUser_id(data[0].id);
       return data[0].id;
     } catch (err) {
@@ -34,7 +34,7 @@ const CompletedProjects = ({ token }) => {
         )
         .eq("completed", true);
       if (error) throw error;
-      console.log(data);
+
       setProjects(data);
     } catch (err) {
       console.log(err);
@@ -134,8 +134,6 @@ const CompletedProjects = ({ token }) => {
           )}
         </>
       )}
-
-     
     </>
   );
 };

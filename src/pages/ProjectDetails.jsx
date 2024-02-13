@@ -68,110 +68,110 @@ const ProductDetails = ({ token }) => {
   // Assuming project.created_at is a timestamp
   const date = new Date(project.created_at);
 
-// Get the date, month, and year separately
-const day = date.getDate();
-const month = date.toLocaleString("default", { month: "short" });
-const year = date.getFullYear();
+  // Get the date, month, and year separately
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "short" });
+  const year = date.getFullYear();
 
-// Get the time
-let hours = date.getHours();
-const minutes = date.getMinutes();
-const seconds = date.getSeconds();
+  // Get the time
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
 
-// Convert hours to 12-hour format and determine AM or PM
-const ampm = hours >= 12 ? 'PM' : 'AM';
-hours = hours % 12 || 12; // Convert midnight (0) to 12
+  // Convert hours to 12-hour format and determine AM or PM
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12; // Convert midnight (0) to 12
 
-const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-  .toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${ampm}`;
-
+  const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
+    .toString()
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${ampm}`;
 
   return (
     <>
       <Navbar token={token} />
       <div class="">
-  <div class="mx-auto max-w-screen-lg px-3 py-10 space-y-3">
-    <h5 class="text-sm font-medium uppercase text-gray-400 mb-0">
-      Project Details of {project.p_name}
-    </h5>
-    <h1 class="text-3xl font-semibold mb-0">
-      Project Name: {project.p_name}
-    </h1>
-    <p class="mb-0">Project Description: {project.p_desc}</p>
+        <div class="mx-auto max-w-screen-lg px-3 py-10 space-y-3">
+          <h5 class="text-sm font-medium uppercase text-gray-400 mb-0">
+            Project Details of {project.p_name}
+          </h5>
+          <h1 class="text-3xl font-semibold mb-0">
+            Project Name: {project.p_name}
+          </h1>
+          <p class="mb-0">Project Description: {project.p_desc}</p>
 
-    <ul class="sm:flex items-center text-sm text-gray-500 mb-0">
-      <li>
-        Created by{" "}
-        <span class="font-bold">
-          {Object.keys(project).map((key) => {
-            if (key === "mem_id1" && project[key]) {
-              const userId = parseInt(project[key]);
-              const createdBy = users[userId] || "Loading...";
+          <ul class="sm:flex items-center text-sm text-gray-500 mb-0">
+            <li>
+              Created by{" "}
+              <span class="font-bold">
+                {Object.keys(project).map((key) => {
+                  if (key === "mem_id1" && project[key]) {
+                    const userId = parseInt(project[key]);
+                    const createdBy = users[userId] || "Loading...";
 
-              return (
-                <span
-                  key={key}
-                  className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                >
-                  {createdBy}
-                </span>
-              );
-            }
-            return null;
-          })}
-        </span>
-      </li>
-      <span class="hidden sm:inline mx-3 text-2xl">·</span>
-      <li>
-        Created on {day} {month} {year} at {formattedTime}
-      </li>
-    </ul>
-    <div className="mb-0">
-      Team Members:
-      {Object.keys(project).map((key) => {
-        if (key.startsWith("mem_id") && project[key]) {
-          const userId = parseInt(project[key]);
-          const userName = users[userId] || "Loading...";
+                    return (
+                      <span
+                        key={key}
+                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                      >
+                        {createdBy}
+                      </span>
+                    );
+                  }
+                  return null;
+                })}
+              </span>
+            </li>
+            <span class="hidden sm:inline mx-3 text-2xl">·</span>
+            <li>
+              Created on {day} {month} {year} at {formattedTime}
+            </li>
+          </ul>
+          
+          <div className="mb-0">
+            Team Members:
+            {Object.keys(project).map((key) => {
+              if (key.startsWith("mem_id") && project[key]) {
+                const userId = parseInt(project[key]);
+                const userName = users[userId] || "Loading...";
 
-          return (
-            <span
-              key={key}
-              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-            >
-              {userName}
-            </span>
-          );
-        }
-        return null;
-      })}
-    </div>
-    <button
-  type="button"
-  className={`py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent ${
-    project.completed
-      ? "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-200 text-teal-900 hover:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none hover:text-teal-500 focus:outline-none focus:ring-1 focus:ring-gray-600"
-      : "bg-yellow-100 text-yellow-800 hover:bg-yellow-200 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600"
-  } hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none`}
-  onClick={toggleCompletion}
-  disabled={project.completed}
->
-  {project.completed ? "Completed" : "Not Completed"}
-</button>
-<Link to='/dashboard'
-  type="button"
-  className={`py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-100 text-gray-500 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600 ml-2`}
->
- Back to HomePage
-</Link>
+                return (
+                  <span
+                    key={key}
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                  >
+                    {userName}
+                  </span>
+                );
+              }
+              return null;
+            })}
+          </div>
+          <span class="sm:flex items-center text-sm text-gray-500 mb-0">Due Date: {project.due_date}</span>
+          <button
+            type="button"
+            className={`py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent ${
+              project.completed
+                ? "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-teal-200 text-teal-900 hover:bg-teal-200 disabled:opacity-50 disabled:pointer-events-none hover:text-teal-500 focus:outline-none focus:ring-1 focus:ring-gray-600"
+                : "bg-yellow-100 text-yellow-800 hover:bg-yellow-200 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600"
+            } hover:bg-opacity-75 disabled:opacity-50 disabled:pointer-events-none`}
+            onClick={toggleCompletion}
+            disabled={project.completed}
+          >
+            {project.completed ? "Completed" : "Not Completed"}
+          </button>
+          <Link
+            to="/dashboard"
+            type="button"
+            className={`py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-100 text-gray-500 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600 ml-2`}
+          >
+            Back to HomePage
+          </Link>
 
+          <Comments project={project} token={token} />
+        </div>
+      </div>
 
-
-    <Comments project={project} token={token} />
-  </div>
-</div>
-
-
-{/* 
+      {/* 
       <button
         style={{
           backgroundColor: project.completed ? "green" : "blue", 
@@ -184,8 +184,6 @@ const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
       >
         {project.completed ? "Completed" : "Not Completed"}
       </button> */}
-
-      
     </>
   );
 };

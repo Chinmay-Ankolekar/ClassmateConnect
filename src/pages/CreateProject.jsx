@@ -65,7 +65,7 @@ const CreateProject = ({ token }) => {
         .from("users")
         .select("id")
         .eq("email", token.user.email);
-      console.log(data[0].id);
+      
       if (error) throw error;
       setMem_id1(data[0].id);
       return data[0].id;
@@ -75,7 +75,7 @@ const CreateProject = ({ token }) => {
   };
   getUsername();
 
-  console.log(p_name, p_desc, mem_id1, mem_id2, mem_id3, mem_id4, due_date);
+  
 
   async function createProject() {
     try {

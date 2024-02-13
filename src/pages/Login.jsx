@@ -27,9 +27,8 @@ function Login({ setToken }) {
         email: formdata.email,
         password: formdata.password,
       });
-      console.log(data);
-      if (error) throw error;
 
+      if (error) throw error;
       setToken(data);
       navigate("/dashboard");
     } catch (error) {

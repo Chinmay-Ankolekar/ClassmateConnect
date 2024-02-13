@@ -50,7 +50,7 @@ const Comments = ({ project, token }) => {
         .eq("p_id", project.p_id);
         
       if (error) throw error;
-      console.log(data);
+      
       setCommentsData(data);
     } catch (err) {
       console.log(err);
@@ -65,11 +65,7 @@ const Comments = ({ project, token }) => {
   useEffect(() => {
     getComments()
   }, [project]);
-
-  console.log(commentsData);
-  commentsData.map((comment) => {
-    console.log(comment.users);
-  });
+  
 
   return (
     <>

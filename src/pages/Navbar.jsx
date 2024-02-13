@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Navbar = ({ token }) => {
   let navigate = useNavigate();
-  console.log(token);
+
 
   const setStatus = async () => {
     try {
@@ -14,7 +14,7 @@ const Navbar = ({ token }) => {
         .eq("email", token.user.email)
         .select();
       if (error) throw error;
-      console.log(data);
+
     } catch (err) {
       console.log(err);
     }
