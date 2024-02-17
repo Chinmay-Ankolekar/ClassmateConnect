@@ -13,10 +13,7 @@ ClassmateConnect is a platform designed to facilitate project collaboration and 
  3. **User Profiles**:
    View profiles of team members to learn more about their skills and contributions.
 
- 4. **Notifications**:
-   Stay updated with project activities through real-time notifications.
-
- 5. **Security**:
+ 4. **Security**:
    Built with security in mind to protect user data and privacy.
 
 ### Images 
