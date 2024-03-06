@@ -97,7 +97,7 @@ const ProjectCard = ({ token }) => {
               </div>
               <div className="absolute bottom-0 right-0 p-4">
                 <button
-                  onClick={() => navigate(`/productdetails/${project.p_id}`)}
+                  onClick={() => navigate(`/projectdetails/${project.p_id}`)}
                   className="inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none"
                   href="#"
                 >

@@ -35,22 +35,27 @@ function App() {
         <>
           <Route path={'/dashboard'} element={<Dashboard token={token}/>} />
           <Route path={'/createproduct'} element={<CreateProduct token={token}/>} />
-          <Route path={'/productdetails/:projectId'} element={<ProductDetails token={token}/>} />
+          <Route path={'/projectdetails/:projectId'} element={<ProductDetails token={token}/>} />
           <Route path={'/profile'} element={<Profile token={token}/>} />
-          <Route path={'/404page'} element={<Navigate to="/404page" />} />
+          {/* <Route path={'/404page'} element={<Navigate to="/404page" />} /> */}
         </>
       ) : (
-        <>
-          <Route path={'/dashboard'} element={<Navigate to="/404page" />} />
+         <>
+          {/* <Route path={'/dashboard'} element={<Navigate to="/404page" />} />
           <Route path={'/createproduct'} element={<Navigate to="/404page" />} />
           <Route path={'/productdetails/:projectId'} element={<Navigate to="/404page" />} />
           <Route path={'/profile'} element={<Navigate to="/404page" />} />
-          <Route path={'/404page'} element={<Page_404 />} />
-        </>
-      )}
+          <Route path={'/404page'} element={<Page_404 />} /> */}
+        </> 
+      )} 
       </Routes>
     </>
   )
 }
 
 export default App
+
+
+
+
+

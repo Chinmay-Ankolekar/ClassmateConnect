@@ -5,8 +5,9 @@ const Comments = ({ project, token }) => {
   const [comments, setComments] = useState([]);
   const [user_id, setUser_id] = useState(null);
   const [commentsData, setCommentsData] = useState([]);
+
+console.log(token);
   const name = token.user.user_metadata.fullName;
-  
 
   const getUsers = async () => {
     try {
@@ -46,11 +47,13 @@ const Comments = ({ project, token }) => {
     try {
       const { data, error } = await supabase
         .from("comments")
-        .select(`id,comment_description, date,user_name, users(id, fullname,status)`)
+        .select(
+          `id,comment_description, date,user_name, users(id, fullname,status)`
+        )
         .eq("p_id", project.p_id);
-        
+
       if (error) throw error;
-      
+
       setCommentsData(data);
     } catch (err) {
       console.log(err);
@@ -63,9 +66,8 @@ const Comments = ({ project, token }) => {
   };
 
   useEffect(() => {
-    getComments()
+    getComments();
   }, [project]);
-  
 
   return (
     <>
@@ -80,8 +82,8 @@ const Comments = ({ project, token }) => {
             <h1 className="m-3 mb-6">No Discussion</h1>
           ) : null}
           {commentsData
-            .slice() // Create a copy of the array to avoid mutating the original array
-            .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort comments by timestamp in descending order
+            .slice()
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((comment, index) => (
               <div
                 key={index}
@@ -116,32 +118,44 @@ const Comments = ({ project, token }) => {
                 </span>
                 <div className="w-full ">
                   <div className="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row">
-                 
-<h3 className="font-medium">
-  {comment.user_name}
-  <span className={`inline-flex items-center ml-2 ${comment.users.status ? 'text-green-500' : 'text-red-500'}`}>
-    
-    <button 
-      type="button" 
-      className={`py-1 px-2 inline-flex items-center gap-x-1 text-xs font-semibold rounded-lg border border-transparent ${comment.users.status ? 'bg-teal-100 text-teal-800 hover:bg-teal-200' : 'bg-red-100 text-red-800 hover:bg-red-200'} disabled:opacity-50 disabled:pointer-events-none`} style={{pointerEvents: 'auto'}}>
-        <span className={`w-2 h-2 rounded-full mr-1 ${comment.users.status ? 'bg-green-500' : 'bg-red-500'}`}></span>
-      {comment.users.status ? 'Online' : 'Offline'}
-    </button>
-  </span>
-</h3>
+                    <h3 className="font-medium">
+                      {comment.user_name}
+                      <span
+                        className={`inline-flex items-center ml-2 ${
+                          comment.users.status
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }`}
+                      >
+                        <button
+                          type="button"
+                          className={`py-1 px-2 inline-flex items-center gap-x-1 text-xs font-semibold rounded-lg border border-transparent ${
+                            comment.users.status
+                              ? "bg-teal-100 text-teal-800 hover:bg-teal-200"
+                              : "bg-red-100 text-red-800 hover:bg-red-200"
+                          } disabled:opacity-50 disabled:pointer-events-none`}
+                          style={{ pointerEvents: "auto" }}
+                        >
+                          <span
+                            className={`w-2 h-2 rounded-full mr-1 ${
+                              comment.users.status
+                                ? "bg-green-500"
+                                : "bg-red-500"
+                            }`}
+                          ></span>
+                          {comment.users.status ? "Online" : "Offline"}
+                        </button>
+                      </span>
+                    </h3>
 
-
-
-                    
                     <time className="text-xs" dateTime={comment.date}>
-  {new Date(comment.date).toLocaleString('en-US', {
-    day: 'numeric',
-    month: 'short',
-    hour: 'numeric',
-    minute: 'numeric'
-  })}
-</time>
-
+                      {new Date(comment.date).toLocaleString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                        hour: "numeric",
+                        minute: "numeric",
+                      })}
+                    </time>
                   </div>
                   <p className="text-sm">{comment.comment_description}</p>
                 </div>
